@@ -25,14 +25,15 @@ import matplotlib.pyplot as plt
 EPOCH = 1               # train the training data n times, to save time, we just train 1 epoch
 BATCH_SIZE = 50         #分批次训练，一批次训练50个样本
 LR = 0.001              # learning rate
-DOWNLOAD_MNIST = False  #不下载MNIST
+DOWNLOAD_MNIST = False  #不下载MNIST，从美帝下载很慢
 
 
-# Mnist digits dataset
+# Mnist digits dataset 此处自己可以建立文件参考：超简单！pytorch入门教程（四）：准备图片数据集 - 简书  https://www.jianshu.com/p/8da9b24b2fb6
 if not(os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
     # not mnist dir or mnist is empyt dir
     DOWNLOAD_MNIST = True
-
+    
+#torchvision 实现数据的预处理和加载
 train_data = torchvision.datasets.MNIST(
     root='./mnist/',
     train=True,                                     # this is training data
@@ -52,7 +53,7 @@ plt.show()
 train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
 
 # convert test data into Variable, pick 2000 samples to speed up testing
-test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)
+test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)#train=False时代表加载测试集;
 test_x = Variable(torch.unsqueeze(test_data.test_data, dim=1), volatile=True).type(torch.FloatTensor)[:2000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
 test_y = test_data.test_labels[:2000]
 
