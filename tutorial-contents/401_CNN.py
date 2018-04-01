@@ -9,7 +9,7 @@ matplotlib
 """
 # library
 # standard library
-import os
+import os  #打开目录用包
 
 # third-party library
 import torch
@@ -19,13 +19,13 @@ import torch.utils.data as Data
 import torchvision
 import matplotlib.pyplot as plt
 
-# torch.manual_seed(1)    # reproducible
+# torch.manual_seed(1)    # reproducible，产生初始权重
 
 # Hyper Parameters
 EPOCH = 1               # train the training data n times, to save time, we just train 1 epoch
-BATCH_SIZE = 50
+BATCH_SIZE = 50         #分批次训练，一批次训练50个样本
 LR = 0.001              # learning rate
-DOWNLOAD_MNIST = False
+DOWNLOAD_MNIST = False  #不下载MNIST
 
 
 # Mnist digits dataset
